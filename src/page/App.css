@@ -179,18 +179,13 @@ ul li span:nth-child(2) {
   transform: scale(1.1);
 }
 
-.color-circle.selected {
-  border-color: #fff;
-  box-shadow: 0 0 5px 2px rgba(255,255,255,0.7);
-  transform: scale(1.2);
-}
 
 
 .Header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px; /* espaçamento abaixo */
+  margin-bottom: 20px;
 }
 
 .Header h2 {
@@ -203,4 +198,16 @@ ul li span:nth-child(2) {
   display: flex;
   gap: 15px;
   /* mantém as bolinhas alinhadas horizontalmente */
+}
+
+
+.color-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border: none;
+  cursor: pointer;
 }
