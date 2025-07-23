@@ -46,15 +46,18 @@ function App() {
 
         {/* Seletor de gradiente */}
         <div className="ColorPicker">
-          <label>Plano de fundo: </label>
-          <select onChange={(e) => setTipoFundo(e.target.value)} value={tipoFundo}>
-            <option value="padrao">Padrão</option>
-            <option value="suave">Suave</option>
-            <option value="escuro">Escuro</option>
-            <option value="tropical">Tropical</option>
-          </select>
-        </div>
-
+  {Object.entries(gradientes).map(([key, value]) => (
+    <button
+      key={key}
+      className={`color-circle ${tipoFundo === key ? "selected" : ""}`}
+      style={{ background: value }}
+      onClick={() => setTipoFundo(key)}
+      aria-label={`Selecionar plano de fundo ${key}`}
+      title={`Plano de fundo ${key}`}
+      type="button"
+    />
+  ))}
+</div>
         <div className='Row'>
           <input 
             type="text" 
