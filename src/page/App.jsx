@@ -2,13 +2,13 @@ import './App.css';
 import { useState, useEffect } from "react";
 
 function App() {
-  // Carregar tarefas do localStorage ou iniciar vazio
+  // Estado para as tarefas
   const [tarefas, setTarefas] = useState(() => {
     const saved = localStorage.getItem("tarefas");
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Carregar tipo de fundo do localStorage ou padrão "padrao"
+  // Estado para o tipo de fundo
   const [tipoFundo, setTipoFundo] = useState(() => {
     return localStorage.getItem("tipoFundo") || "padrao";
   });
@@ -20,15 +20,15 @@ function App() {
     tropical: "linear-gradient(135deg, #43cea2, #185a9d)",
   };
 
-  // Texto da nova tarefa
+  // Estado para o texto da nova tarefa
   const [texto, setTexto] = useState("");
 
-  // Salvar tarefas no localStorage sempre que mudarem
+  // Salvar tarefas no localStorage quando atualizarem
   useEffect(() => {
     localStorage.setItem("tarefas", JSON.stringify(tarefas));
   }, [tarefas]);
 
-  // Salvar tipo de fundo no localStorage sempre que mudar
+  // Salvar tipo de fundo no localStorage quando mudar
   useEffect(() => {
     localStorage.setItem("tipoFundo", tipoFundo);
   }, [tipoFundo]);
@@ -52,59 +52,62 @@ function App() {
   }
 
   return (
-    <div 
+    <div
       className="Container"
       style={{
         background: gradientes[tipoFundo],
       }}
-    >     
+    >
       <div className="ToDoApp">
-        <h2>
-          To do list 
-          <img className="ImagemList" src="../src/img/icone-to-do.png" alt="ícone"/>
-        </h2>
-
-        {/* Bolinhas de cor */}
-        <div className="ColorPicker">
-          {Object.entries(gradientes).map(([key, value]) => (
-            <button
-              key={key}
-              className={`color-circle ${tipoFundo === key ? "selected" : ""}`}
-              style={{ background: value }}
-              onClick={() => setTipoFundo(key)}
-              aria-label={`Selecionar plano de fundo ${key}`}
-              title={`Plano de fundo ${key}`}
-              type="button"
+        <div className="Header">
+          <h2>
+            To do list
+            <img
+              className="ImagemList"
+              src="../src/img/icone-to-do.png"
+              alt="ícone"
             />
-          ))}
+          </h2>
+
+          <div className="ColorPicker">
+            {Object.entries(gradientes).map(([key, value]) => (
+              <button
+                key={key}
+                className={`color-circle ${tipoFundo === key ? "selected" : ""}`}
+                style={{ background: value }}
+                onClick={() => setTipoFundo(key)}
+                aria-label={`Selecionar plano de fundo ${key}`}
+                title={`Plano de fundo ${key}`}
+                type="button"
+              />
+            ))}
+          </div>
         </div>
 
-        <div className='Row'>
-          <input 
-            type="text" 
+        <div className="Row">
+          <input
+            type="text"
             value={texto}
             onChange={(e) => setTexto(e.target.value)}
-            placeholder='add your text'
+            placeholder="add your text"
           />
-          <button className='Button-Lista' onClick={adicionarTarefa}>add</button>
+          <button className="Button-Lista" onClick={adicionarTarefa}>
+            add
+          </button>
         </div>
+
         <ul>
           {tarefas.map((tarefa, index) => (
-            <li 
-              key={index}
-              className={tarefa.concluida ? "checked" : ""}
-            >
-              <span 
-                className="check-icon" 
+            <li key={index} className={tarefa.concluida ? "checked" : ""}>
+              <span
+                className="check-icon"
                 onClick={() => alternarConcluida(index)}
               ></span>
-              <span>
-                {tarefa.texto}
-              </span>
-              <img 
-                src="../src/img/lixeira.png" 
+              <span>{tarefa.texto}</span>
+              <img
+                src="../src/img/lixeira.png"
                 alt="Excluir"
-                onClick={() => excluirTarefa(index)} 
+                onClick={() => excluirTarefa(index)}
               />
             </li>
           ))}
