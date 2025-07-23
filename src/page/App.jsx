@@ -1,10 +1,17 @@
 import './App.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
-  const [texto, setTexto] = useState("");
-  const [tarefas, setTarefas] = useState([]);
-  const [tipoFundo, setTipoFundo] = useState("padrao");
+  // Carregar tarefas do localStorage ou iniciar vazio
+  const [tarefas, setTarefas] = useState(() => {
+    const saved = localStorage.getItem("tarefas");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // Carregar tipo de fundo do localStorage ou padrão "padrao"
+  const [tipoFundo, setTipoFundo] = useState(() => {
+    return localStorage.getItem("tipoFundo") || "padrao";
+  });
 
   const gradientes = {
     padrao: "linear-gradient(135deg, #153677, #4e085f)",
@@ -12,6 +19,19 @@ function App() {
     escuro: "linear-gradient(135deg, #232526, #414345)",
     tropical: "linear-gradient(135deg, #43cea2, #185a9d)",
   };
+
+  // Texto da nova tarefa
+  const [texto, setTexto] = useState("");
+
+  // Salvar tarefas no localStorage sempre que mudarem
+  useEffect(() => {
+    localStorage.setItem("tarefas", JSON.stringify(tarefas));
+  }, [tarefas]);
+
+  // Salvar tipo de fundo no localStorage sempre que mudar
+  useEffect(() => {
+    localStorage.setItem("tipoFundo", tipoFundo);
+  }, [tipoFundo]);
 
   function adicionarTarefa() {
     if (texto.trim() === "") return;
@@ -44,20 +64,21 @@ function App() {
           <img className="ImagemList" src="../src/img/icone-to-do.png" alt="ícone"/>
         </h2>
 
-        {/* Seletor de gradiente */}
+        {/* Bolinhas de cor */}
         <div className="ColorPicker">
-  {Object.entries(gradientes).map(([key, value]) => (
-    <button
-      key={key}
-      className={`color-circle ${tipoFundo === key ? "selected" : ""}`}
-      style={{ background: value }}
-      onClick={() => setTipoFundo(key)}
-      aria-label={`Selecionar plano de fundo ${key}`}
-      title={`Plano de fundo ${key}`}
-      type="button"
-    />
-  ))}
-</div>
+          {Object.entries(gradientes).map(([key, value]) => (
+            <button
+              key={key}
+              className={`color-circle ${tipoFundo === key ? "selected" : ""}`}
+              style={{ background: value }}
+              onClick={() => setTipoFundo(key)}
+              aria-label={`Selecionar plano de fundo ${key}`}
+              title={`Plano de fundo ${key}`}
+              type="button"
+            />
+          ))}
+        </div>
+
         <div className='Row'>
           <input 
             type="text" 
@@ -77,7 +98,7 @@ function App() {
                 className="check-icon" 
                 onClick={() => alternarConcluida(index)}
               ></span>
-              <span onClick={() => alternarConcluida(index)}>
+              <span>
                 {tarefa.texto}
               </span>
               <img 

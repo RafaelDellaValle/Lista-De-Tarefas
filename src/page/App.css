@@ -145,6 +145,18 @@ ul li span:nth-child(2) {
 
 
 /* Seletor de plano de fundo */
+/* .Container com transição suave */
+.Container {
+  transition: background 0.5s ease;
+}
+
+/* ColorPicker e bolinhas */
+/* .Container com transição suave */
+.Container {
+  transition: background 0.5s ease;
+}
+
+/* ColorPicker e bolinhas */
 .ColorPicker {
   margin-bottom: 15px;
   display: flex;
