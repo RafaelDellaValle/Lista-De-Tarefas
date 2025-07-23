@@ -43,15 +43,19 @@ function App() {
         <ul>
           {tarefas.map((tarefa, index) => (
             <li 
-              key={index}
-              className={tarefa.concluida ? "checked" : ""}
-            >
-              <span className="check-icon"></span> {/* Ícone que aparece atrás */}
-              <span onClick={() => alternarConcluida(index)}>
-                {tarefa.texto}
-              </span>
-              <img src="../src/img/lixeira.png" onClick={() => excluirTarefa(index)} />
-            </li>
+          key={index}
+          className={tarefa.concluida ? "checked" : ""}
+        >
+          <span 
+            className="check-icon"
+            onClick={() => alternarConcluida(index)}  // aqui
+          ></span>
+          <span onClick={() => alternarConcluida(index)}>
+            {tarefa.texto}
+          </span>
+          <img src="../src/img/lixeira.png" onClick={() => excluirTarefa(index)} />
+        </li>
+
           ))}
         </ul>
       </div>

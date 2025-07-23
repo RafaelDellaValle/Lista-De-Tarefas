@@ -67,16 +67,15 @@ input{
 }
 
 ul li {
-  position: relative;
+  position: relative; /* necessário para posicionar a lixeira */
   list-style: none;
-  font-size: 20px;
-  padding: 12px 8px 12px 80px; /* mais espaço pra ícones */
+  font-size: 22px; /* já aproveitei o aumento que você pediu */
+  padding: 12px 50px 12px 80px; /* mais espaço à direita pro ícone */
   user-select: none;
   cursor: pointer;
   display: flex;
   align-items: center;
 }
-
 /* Ícone circular existente já tem ::before, vamos manter */
 /* Agora estilizar o check-icon */
 
@@ -120,15 +119,17 @@ ul li.checked::before{
 
 /* === ESTILO PARA A IMAGEM DA LIXEIRA === */
 ul li img {
-  width: 38px;
-  height: 38px;
+  position: absolute;
+  right: 20px; /* distância da borda direita */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
   cursor: pointer;
-  margin-left: 320px;
-  vertical-align: middle;
   transition: transform 0.2s ease;
 }
 
 ul li img:hover {
-  transform: scale(1.2);
+  transform: translateY(-50%) scale(1.2);
   filter: brightness(0.8);
 }
