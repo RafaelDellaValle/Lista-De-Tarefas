@@ -15,7 +15,12 @@ function App() {
 
   function alternarConcluida(index) {
     const novaLista = [...tarefas];
-    novaLista[index].concluida = !novaLista[index].concluida; // inverte o valor
+    novaLista[index].concluida = !novaLista[index].concluida;
+    setTarefas(novaLista);
+  }
+
+  function excluirTarefa(index) {
+    const novaLista = tarefas.filter((_, i) => i !== index);
     setTarefas(novaLista);
   }
 
@@ -39,13 +44,15 @@ function App() {
           {tarefas.map((tarefa, index) => (
             <li 
               key={index}
-              onClick={() => alternarConcluida(index)}
-              style={{
-                textDecoration: tarefa.concluida ? "line-through" : "none",
-                cursor: "pointer"
-              }}
+              className={tarefa.concluida ? "checked" : ""}
             >
-              {tarefa.texto}
+              <span onClick={() => alternarConcluida(index)}>
+                {tarefa.texto}
+              </span>
+              <img src="../src/img/lixeira.png"
+                onClick={() => excluirTarefa(index)}/>
+              
+            
             </li>
           ))}
         </ul>
