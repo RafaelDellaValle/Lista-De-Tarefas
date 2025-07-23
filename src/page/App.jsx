@@ -64,7 +64,7 @@ function App() {
             To do list
             <img
               className="ImagemList"
-              src="../src/img/Tarefa.png"
+              src="../public/Tarefa.png"
               alt="ícone"
             />
           </h2>
@@ -105,7 +105,7 @@ function App() {
               ></span>
               <span>{tarefa.texto}</span>
               <img
-                src="../src/img/Lixeira.png"
+                src="../public/Lixeira.png"
                 alt="Excluir"
                 onClick={() => excluirTarefa(index)}
               />
