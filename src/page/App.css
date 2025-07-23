@@ -1,5 +1,3 @@
-/* Importação de fontes, se necessário (ex: @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');) */
-
 *{
   margin: 0;
   padding: 0;
@@ -16,15 +14,14 @@ body{
   min-height: 100vh;
   background: linear-gradient(135deg, #153677, #4e085f);
   padding: 10px;
-  transition: background 0.5s ease; /* Adicionado para transição suave do background */
 }
 
 .ToDoApp {
   width: 100%;
   max-width: 540px;
   background: #fff;
-  margin: 40px auto;
-  padding: 40px 30px 40px;
+  margin: 40px auto;   /* centraliza sem empurrar tanto */
+  padding: 40px 30px 40px;  /* menos espaço embaixo */
   border-radius: 10px;
 }
 
@@ -37,7 +34,7 @@ body{
 
 .ToDoApp h2 img{
   width: 30px;
-  margin-left: 0px; /* Se o gap for usado no h2, margin-left pode não ser necessário */
+  margin-left: 0px;
 }
 
 .Row{
@@ -69,47 +66,46 @@ input{
   border-radius: 40px;
 }
 
-ul {
-  padding-left: 0; /* Remover padding padrão da lista */
-}
-
 ul li {
-  position: relative;
+  position: relative; /* necessário para posicionar a lixeira */
   list-style: none;
-  font-size: 22px;
-  padding: 12px 50px 12px 80px;
+  font-size: 22px; /* já aproveitei o aumento que você pediu */
+  padding: 12px 50px 12px 80px; /* mais espaço à direita pro ícone */
   user-select: none;
   cursor: pointer;
   display: flex;
   align-items: center;
 }
+/* Ícone circular existente já tem ::before, vamos manter */
+/* Agora estilizar o check-icon */
 
-/* Ícone de "Verificar" para tarefas não concluídas */
 ul li .check-icon {
   position: absolute;
-  left: 20px;
+  left: 20px; /* ajustar para ficar atrás do texto */
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background-image: url('/img/Verificar.png'); /* Caminho corrigido */
+  background-image: url('../img/Verificar.png'); /* ícone para não concluído */
   background-size: cover;
   background-position: center;
   transition: background-image 0.3s ease;
-  flex-shrink: 0; /* Evita que o ícone diminua */
 }
 
 /* Quando a tarefa está concluída, muda o ícone do .check-icon */
 ul li.checked .check-icon {
-  background-image: url('/img/Correto.png'); /* Caminho corrigido */
+  background-image: url('../img/Correto.png'); /* ícone para concluído */
 }
-
-/* Remove o ::before que estava duplicado e causando o ícone "icc" */
 ul li::before {
-  /* Este seletor estava duplicado e mal referenciado no seu código original. */
-  /* Recomendo removê-lo completamente ou refatorar para ser o check-icon. */
-  /* Se você queria um ícone antes do texto além do check-icon, ele precisa de um estilo diferente. */
-  /* No seu caso, o .check-icon já faz o papel de ícone de status. */
-  content: none; /* Garante que não apareça */
+  content: '';
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-image: url(img/icone-to-do.png);
+  background-size: cover;
+  background-position: center;
+  top: 12px;
+  left: 8px;
 }
 
 ul li.checked{
@@ -118,21 +114,19 @@ ul li.checked{
 }
 
 ul li.checked::before{
-  /* Isso não será mais necessário se o ::before for removido ou refatorado */
-  content: none; /* Garante que não apareça */
+  background-image: url(img/icone-to-do.png);
 }
 
 /* === ESTILO PARA A IMAGEM DA LIXEIRA === */
 ul li img {
   position: absolute;
-  right: 20px;
+  right: 20px; /* distância da borda direita */
   top: 50%;
   transform: translateY(-50%);
   width: 28px;
   height: 28px;
   cursor: pointer;
   transition: transform 0.2s ease;
-  flex-shrink: 0; /* Evita que a lixeira diminua */
 }
 
 ul li img:hover {
@@ -140,22 +134,33 @@ ul li img:hover {
   filter: brightness(0.8);
 }
 
+
 /* Texto da tarefa com quebra de linha */
-ul li span:nth-child(2) { /* Seleciona o span que contém o texto da tarefa */
+ul li span:nth-child(2) {
   display: inline-block;
-  max-width: calc(100% - 100px); /* Ajuste o espaço para o check-icon e a lixeira */
-  word-wrap: break-word;
-  white-space: normal;
-  flex-grow: 1; /* Permite que o texto ocupe o espaço restante */
-  margin-left: 20px; /* Adiciona espaço entre o check-icon e o texto */
+  max-width: calc(100% - 100px); /* deixa espaço para check + lixeira */
+  word-wrap: break-word; /* quebra palavras longas */
+  white-space: normal;   /* permite quebras de linha */
 }
 
+
 /* Seletor de plano de fundo */
+/* .Container com transição suave */
+.Container {
+  transition: background 0.5s ease;
+}
+
+/* ColorPicker e bolinhas */
+/* .Container com transição suave */
+.Container {
+  transition: background 0.5s ease;
+}
+
+/* ColorPicker e bolinhas */
 .ColorPicker {
   margin-bottom: 15px;
   display: flex;
   gap: 15px;
-  justify-content: flex-end; /* Alinha os botões de cor à direita */
 }
 
 .color-circle {
@@ -175,8 +180,9 @@ ul li span:nth-child(2) { /* Seleciona o span que contém o texto da tarefa */
 }
 
 .color-circle.selected {
-  border-color: #000; /* Borda preta para o selecionado */
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
+  border-color: #fff;
+  box-shadow: 0 0 5px 2px rgba(255,255,255,0.7);
+  transform: scale(1.2);
 }
 
 .Header {
@@ -189,5 +195,11 @@ ul li span:nth-child(2) { /* Seleciona o span que contém o texto da tarefa */
 .Header h2 {
   display: flex;
   align-items: center;
-  gap: 8px; /* Espaço entre o texto "To do list" e o ícone */
+  gap: 8px;
+}
+
+.ColorPicker {
+  display: flex;
+  gap: 15px;
+  /* mantém as bolinhas alinhadas horizontalmente */
 }
