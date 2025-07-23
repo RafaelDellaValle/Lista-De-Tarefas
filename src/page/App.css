@@ -133,3 +133,12 @@ ul li img:hover {
   transform: translateY(-50%) scale(1.2);
   filter: brightness(0.8);
 }
+
+
+/* Texto da tarefa com quebra de linha */
+ul li span:nth-child(2) {
+  display: inline-block;
+  max-width: calc(100% - 100px); /* deixa espaço para check + lixeira */
+  word-wrap: break-word; /* quebra palavras longas */
+  white-space: normal;   /* permite quebras de linha */
+}
