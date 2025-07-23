@@ -142,3 +142,20 @@ ul li span:nth-child(2) {
   word-wrap: break-word; /* quebra palavras longas */
   white-space: normal;   /* permite quebras de linha */
 }
+
+
+/* Seletor de plano de fundo */
+.ColorPicker {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ColorPicker select,
+.ColorPicker input[type="color"] {
+  padding: 5px;
+  cursor: pointer;
+}
+.Container {
+  transition: background 0.5s ease; /* transição suave */
+}
