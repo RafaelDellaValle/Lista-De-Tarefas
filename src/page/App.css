@@ -22,15 +22,14 @@ body{
 
 
 
-.ToDoApp{
+.ToDoApp {
   width: 100%;
   max-width: 540px;
   background: #fff;
-  margin: 10px auto 90px;
-  padding: 40px 30px 60px;
+  margin: 40px auto;   /* centraliza sem empurrar tanto */
+  padding: 40px 30px 40px;  /* menos espaço embaixo */
   border-radius: 10px;
 }
-
 
 
 .ToDoApp h2 {
@@ -85,7 +84,7 @@ ul li{
   position: relative;
 }
 
-ul li ::before{
+ul li::before {
   content: '';
   position: absolute;
   height: 28px;
@@ -96,8 +95,6 @@ ul li ::before{
   background-position: center;
   top: 12px;
   left: 8px;
-
-
 }
 
 ul li.checked{

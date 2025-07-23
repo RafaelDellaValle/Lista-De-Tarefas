@@ -1,23 +1,29 @@
-import './App.css'
-import './App.css'
+import './App.css';
 import { useState } from "react";
 
 function App() {
-  const [texto, setTexto] = useState("");    // texto do input
-  const [tarefas, setTarefas] = useState([]); // lista de tarefas (inicia vazia)
+  const [texto, setTexto] = useState("");
+  const [tarefas, setTarefas] = useState([]);
 
   function adicionarTarefa() {
-    if (texto.trim() === "") return;        // não adiciona se estiver vazio
+    if (texto.trim() === "") return;
 
-    setTarefas([...tarefas, texto]);        // adiciona o texto na lista
-    setTexto("");                           // limpa o input
+    const novaTarefa = { texto: texto, concluida: false };
+    setTarefas([...tarefas, novaTarefa]);
+    setTexto("");
+  }
+
+  function alternarConcluida(index) {
+    const novaLista = [...tarefas];
+    novaLista[index].concluida = !novaLista[index].concluida; // inverte o valor
+    setTarefas(novaLista);
   }
 
   return (
     <div className="Container">     
       <div className="ToDoApp">
         <h2>
-          To do list
+          To do list 
           <img className="ImagemList" src="../src/img/icone-to-do.png" alt="ícone"/>
         </h2>
         <div className='Row'>
@@ -31,12 +37,21 @@ function App() {
         </div>
         <ul>
           {tarefas.map((tarefa, index) => (
-            <li key={index}>{tarefa}</li>
+            <li 
+              key={index}
+              onClick={() => alternarConcluida(index)}
+              style={{
+                textDecoration: tarefa.concluida ? "line-through" : "none",
+                cursor: "pointer"
+              }}
+            >
+              {tarefa.texto}
+            </li>
           ))}
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
 export default App;
