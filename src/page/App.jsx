@@ -64,8 +64,8 @@ function App() {
             To do list
             <img
               className="ImagemList"
-              src="../src/img/icone-to-do.png"
-              alt="ícone"
+              src="/img/Icone-to-do.png" // Caminho corrigido
+              alt="ícone de lista de tarefas" // Melhorar o alt text
             />
           </h2>
 
@@ -90,8 +90,9 @@ function App() {
             value={texto}
             onChange={(e) => setTexto(e.target.value)}
             placeholder="add your text"
+            aria-label="Adicionar nova tarefa" // Adicionar aria-label para acessibilidade
           />
-          <button className="Button-Lista" onClick={adicionarTarefa}>
+          <button className="Button-Lista" onClick={adicionarTarefa} type="button"> {/* Adicionar type="button" */}
             add
           </button>
         </div>
@@ -102,12 +103,17 @@ function App() {
               <span
                 className="check-icon"
                 onClick={() => alternarConcluida(index)}
+                role="checkbox" // Indicar que é um checkbox para leitores de tela
+                aria-checked={tarefa.concluida} // Estado do checkbox
+                tabIndex="0" // Tornar clicável com teclado
               ></span>
               <span>{tarefa.texto}</span>
               <img
-                src="../src/img/lixeira.png"
-                alt="Excluir"
+                src="/img/Lixeira.png" // Caminho corrigido
+                alt="Excluir tarefa" // Melhorar o alt text
                 onClick={() => excluirTarefa(index)}
+                role="button" // Indicar que é um botão
+                tabIndex="0" // Tornar clicável com teclado
               />
             </li>
           ))}
