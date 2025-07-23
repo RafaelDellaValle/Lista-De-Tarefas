@@ -46,13 +46,11 @@ function App() {
               key={index}
               className={tarefa.concluida ? "checked" : ""}
             >
+              <span className="check-icon"></span> {/* Ícone que aparece atrás */}
               <span onClick={() => alternarConcluida(index)}>
                 {tarefa.texto}
               </span>
-              <img src="../src/img/lixeira.png"
-                onClick={() => excluirTarefa(index)}/>
-              
-            
+              <img src="../src/img/lixeira.png" onClick={() => excluirTarefa(index)} />
             </li>
           ))}
         </ul>

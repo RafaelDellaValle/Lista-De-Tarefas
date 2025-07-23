@@ -66,15 +66,36 @@ input{
   border-radius: 40px;
 }
 
-ul li{
+ul li {
+  position: relative;
   list-style: none;
   font-size: 17px;
-  padding: 12px 8px 12px 50px;
+  padding: 12px 8px 12px 80px; /* mais espaço pra ícones */
   user-select: none;
   cursor: pointer;
-  position: relative;
+  display: flex;
+  align-items: center;
 }
 
+/* Ícone circular existente já tem ::before, vamos manter */
+/* Agora estilizar o check-icon */
+
+ul li .check-icon {
+  position: absolute;
+  left: 40px; /* ajustar para ficar atrás do texto */
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-image: url('../img/Verificar.png'); /* ícone para não concluído */
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.3s ease;
+}
+
+/* Quando a tarefa está concluída, muda o ícone do .check-icon */
+ul li.checked .check-icon {
+  background-image: url('../img/Correto.png'); /* ícone para concluído */
+}
 ul li::before {
   content: '';
   position: absolute;
