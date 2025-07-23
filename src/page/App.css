@@ -65,7 +65,7 @@ input{
 }
 
 
-button{
+.Button-Lista{
   border: none;
   outline: none;
   padding: 16px 50px;
