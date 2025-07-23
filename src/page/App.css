@@ -117,6 +117,10 @@ ul li.checked{
   text-decoration: line-through;
 }
 
+ul li.checked .check-icon {
+  background-image: url('/Correto.png');
+}
+
 ul li.checked::before{
   /* Isso não será mais necessário se o ::before for removido ou refatorado */
   content: none; /* Garante que não apareça */
@@ -190,4 +194,8 @@ ul li span:nth-child(2) { /* Seleciona o span que contém o texto da tarefa */
   display: flex;
   align-items: center;
   gap: 8px; /* Espaço entre o texto "To do list" e o ícone */
+}
+
+.check-icon {
+  background-image: url('/Verificar.png');
 }
