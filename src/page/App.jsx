@@ -14,7 +14,7 @@ function App() {
   });
 
   const gradientes = {
-    padrao: "linear-gradient(135deg, #153677, #4e085f)",
+    padrao: "linear-gradient(135deg, #FF2DD1, #4e085f)",
     suave: "linear-gradient(135deg, #f9d423, #ff4e50)",
     escuro: "linear-gradient(135deg, #232526, #414345)",
     tropical: "linear-gradient(135deg, #43cea2, #185a9d)",
